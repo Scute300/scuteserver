@@ -16,7 +16,12 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-  Route.get('/', 'UserController.initial')
+  Route.get('/', async()=>{
+	  //Database first test
+	  const Database = use('Database');
+	  const x= await Database.select('*').from('users');
+	  return x;
+  })
   
   Route.put('/nerfeo', 'UserController.nerfeos')
   Route.get('/royal', 'UserController.royale')
