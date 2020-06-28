@@ -7,6 +7,15 @@ const Cloudinary = use('Cloudinary')
 class UserController {
 
     ///Sign up
+
+    async initial({response}){
+        const users = await User.all()
+        return response.json ({
+            status: success,
+            data: users
+        }) 
+
+    }
     async signup ({ request, auth, response }) {
 		// get user data from signup form
 		const userData = request.only(['name', 'username', 'email', 'password']);
