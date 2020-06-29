@@ -18,7 +18,7 @@ class UserController {
             const rules = {
                 name: 'required|string|max:10|alpha',
                 username: 'required|string|max:10|unique:user,username|alpha',
-                mail: 'required|string|max:50|min:10|unique:users,mail',
+                email: 'required|string|max:50|min:10|unique:users,mail',
                 password: 'string|required|min:8|max:20',
             }
             const messages = {
@@ -27,9 +27,9 @@ class UserController {
                 'username.alpha' : 'Nombre de usuario no debe contener simbolos ni espacios',
                 'username.max' : 'Nombre de usuario debe ser menor a 10 caracteres',
                 'username.unique' : 'Este nombre de usuario ya está ocupado',
-                'mail.unique': 'Este correo ya está registrado',
-                'mail.min':'Correo no puede ser inferior a 10 caracteres',
-                'mail.max' : 'Correo no puede ser mayor a 50 caracteres',
+                'email.unique': 'Este correo ya está registrado',
+                'email.min':'Correo no puede ser inferior a 10 caracteres',
+                'email.max' : 'Correo no puede ser mayor a 50 caracteres',
                 'name.max' : 'Nombre no debe tener mas de 10 caracteres',
                 'password.min' : 'Contraseña debe tener al menos 8 caracteres',
                 'password.max' : 'Contraseña no puede ser mayor a 20 caracteres'
