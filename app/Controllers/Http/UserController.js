@@ -3,6 +3,7 @@ const User = use('App/Models/User')
 const Hash = use('Hash')
 const Post = use('App/Models/Post')
 const Cloudinary = use('Cloudinary')
+const { validate } = use('Validator')
 
 class UserController {
 
@@ -13,28 +14,60 @@ class UserController {
 		const userData = request.only(['name', 'username', 'email', 'password']);
 		//console.log(userData);
 		try {
-            // save user to database
-            const user = await new User()
-            user.name = userData.name
-            user.username = userData.username.replace(/ /g, "_")
-            user.email = userData.email
-            user.password = userData.password
-            await user.save();
-			// generate JWT token for user
-			console.log("Creating token");
-			const token = await auth.generate(user)
-            console.log("Success");
             
-            
-			return response.json({
-				status: 'success',
-				data: token
-			})
+            const rules = {
+                name: 'required|string|max:10|alpha',
+                username: 'required|string|max:10|unique:user,username|alpha',
+                mail: 'required|string|max:50|min:10|unique:users,mail',
+                password: 'string|required|min:8|max:20',
+            }
+            const messages = {
+                required: 'Es necesario llenar todos los campos',
+                'name.alpha':'Nombre no puede contener simbolos ni espacios',
+                'username.alpha' : 'Nombre de usuario no debe contener simbolos ni espacios',
+                'username.max' : 'Nombre de usuario debe ser menor a 10 caracteres',
+                'username.unique' : 'Este nombre de usuario ya está ocupado',
+                'mail.unique': 'Este correo ya está registrado',
+                'mail.min':'Correo no puede ser inferior a 10 caracteres',
+                'mail.max' : 'Correo no puede ser mayor a 50 caracteres',
+                'name.max' : 'Nombre no debe tener mas de 10 caracteres',
+                'password.min' : 'Contraseña debe tener al menos 8 caracteres',
+                'password.max' : 'Contraseña no puede ser mayor a 20 caracteres'
+              }
+
+            const validation = await validate(userData, rules, messages)
+            if (validation.fails){
+                const message = validation.messages()
+                let error = message[0]
+                return response.status(400).json({
+                    status: 'wrong',
+                    message: error.message
+                })
+            } else {
+                // save user to database
+                const user = await new User()
+                user.name = userData.name
+                user.username = userData.username.replace(/ /g, "_")
+                user.email = userData.email
+                user.password = userData.password
+                await user.save();
+                // generate JWT token for user
+                console.log("Creating token");
+                const token = await auth.generate(user)
+                console.log("Success");
+                
+                
+                return response.json({
+                    status: 'success',
+                    data: token
+                })
+
+            }
 		} catch (error) {
 			console.log(error);
 			return response.status(400).json({
 				status: 'error',
-				message: 'Usuario y/o Email existentes'
+				message: 'Error interno, intentalo mas tarde'
 			})
 		}
 	}
