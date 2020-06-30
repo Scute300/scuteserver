@@ -17,14 +17,13 @@ class UserController {
             
             const rules = {
                 name: 'required|string|max:10|alpha',
-                username: 'required|string|max:10|unique:users,username|alpha',
+                username: 'required|string|max:10|unique:users,username',
                 email: 'required|string|max:50|min:10|unique:users,email',
                 password: 'string|required|min:8|max:20',
             }
             const messages = {
                 required: 'Es necesario llenar todos los campos',
                 'name.alpha':'Nombre no puede contener simbolos ni espacios',
-                'username.alpha' : 'Nombre de usuario no debe contener simbolos ni espacios',
                 'username.max' : 'Nombre de usuario debe ser menor a 10 caracteres',
                 'username.unique' : 'Este nombre de usuario ya está ocupado',
                 'email.unique': 'Este correo ya está registrado',
