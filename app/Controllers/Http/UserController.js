@@ -35,7 +35,7 @@ class UserController {
               }
 
             const validation = await validate(userData, rules, messages)
-            if (validation.fails){
+            if (validation.fails()){
                 const message = validation.messages()
                 let error = message[0]
                 return response.status(400).json({
@@ -55,7 +55,7 @@ class UserController {
                 const token = await auth.generate(user)
                 console.log("Success");
                 
-                
+
                 return response.json({
                     status: 'success',
                     data: token
