@@ -14,7 +14,7 @@ class UserController {
 		const userData = request.only(['name', 'username', 'email', 'password']);
 		//console.log(userData);
 		try {
-            
+            console.log(userData)
             const rules = {
                 name: 'required|string|max:10|alpha',
                 username: 'required|string|max:10|unique:users,username',
@@ -24,12 +24,12 @@ class UserController {
             const messages = {
                 required: 'Es necesario llenar todos los campos',
                 'name.alpha':'Nombre no puede contener simbolos ni espacios',
-                'username.max' : 'Nombre de usuario debe ser menor a 10 caracteres',
+                'name.max': 'Nombre debe ser menor a 10 caracteres',
+                'username.max' : 'Username debe ser menor a 10 caracteres',
                 'username.unique' : 'Este nombre de usuario ya está ocupado',
                 'email.unique': 'Este correo ya está registrado',
                 'email.min':'Correo no puede ser inferior a 10 caracteres',
                 'email.max' : 'Correo no puede ser mayor a 50 caracteres',
-                'name.max' : 'Nombre no debe tener mas de 10 caracteres',
                 'password.min' : 'Contraseña debe tener al menos 8 caracteres',
                 'password.max' : 'Contraseña no puede ser mayor a 20 caracteres'
               }
