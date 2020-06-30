@@ -17,8 +17,8 @@ class UserController {
             
             const rules = {
                 name: 'required|string|max:10|alpha',
-                username: 'required|string|max:10|unique:user,username|alpha',
-                email: 'required|string|max:50|min:10|unique:users,mail',
+                username: 'required|string|max:10|unique:users,username|alpha',
+                email: 'required|string|max:50|min:10|unique:users,email',
                 password: 'string|required|min:8|max:20',
             }
             const messages = {
