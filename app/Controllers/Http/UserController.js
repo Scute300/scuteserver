@@ -232,13 +232,14 @@ class UserController {
 
     //foto de perfil
     async updateProfilePic({ request, auth, response }) {
+        try{
         const user = auth.current.user
         const userData = request.only(['avatar']);
         
         if(user.avatar !== 'https://res.cloudinary.com/scute/image/upload/v1566358443/recursos/default_hduxaa.png'){
         
         const image = user.avatarpublicid
-        Cloudinary.v2.uploader.destroy(image)
+        await Cloudinary.v2.uploader.destroy(image)
 
         }
         const avatar = userData['avatar'];
@@ -251,7 +252,10 @@ class UserController {
         return response.json({
             status: 'success',
             data: user
-        }) 
+        })
+    }catch(error){
+        console.log(error)
+    }
     }
     
     async updateProfile({auth, request, response}){
