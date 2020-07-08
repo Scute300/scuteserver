@@ -255,6 +255,10 @@ class UserController {
         })
     }catch(error){
         console.log(error)
+        return response.status(404).json({
+            status: 'wrong',
+            message: 'No puedes actualizar por ahora'
+        })
     }
     }
     
