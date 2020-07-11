@@ -6,13 +6,14 @@ const Schema = use('Schema')
 class UserSchema extends Schema {
   up () {
     this.table('users', (table) => {
-      table.date('edad',8).nullable()
+      table.date('cumpleaños',8).nullable()
       // alter table
     })
   }
 
   down () {
     this.table('users', (table) => {
+      table.date('edad',6).nullable()
       // reverse alternations
     })
   }
