@@ -265,17 +265,25 @@ class UserController {
     async updateProfile({auth, request, response}){
         const user = auth.current.user
         const userData = request.only(['bio','edad','location']);
+        try{
 
-        user.bio = userData.bio
-        user.edad = userData.edad
-        user.location =  userData.location
-        await user.save()
-        
-        return response.json({
-            status: 'success',
-            data: user
-        }) 
-
+            user.bio = userData.bio
+            user.edad = userData.edad
+            user.location =  userData.location
+            await user.save()
+            
+            return response.json({
+                status: 'success',
+                data: user
+            }) 
+    
+        }catch(error){
+            console.log(error)
+            return response.status(400).json({
+                status: 'wrong',
+                message:'error'
+            })
+        }
     }
 
     async especial({ request, response, params}){
