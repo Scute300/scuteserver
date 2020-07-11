@@ -264,11 +264,11 @@ class UserController {
     
     async updateProfile({auth, request, response}){
         const user = auth.current.user
-        const userData = request.only(['bio','edad','location']);
+        const userData = request.only(['bio','cumpleaños','location']);
         try{
 
             user.bio = userData.bio
-            user.edad = userData.edad
+            user.cumpleaños = userData.cumpleaños
             user.location =  userData.location
             await user.save()
             
