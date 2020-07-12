@@ -11,39 +11,37 @@ class PostController {
         // get currently authenticated user
         const postData = request.only(['post','image']);
         //console.log(userData);
-        
-        if (postData.image !== null && postData.post !== null ){
-        let postPic = postData['image'];//request.file('avatar', { types: ['image'], size: '2mb' })
-        console.log("Uploading pic");
-        const resultado =  await Cloudinary.v2.uploader.upload(postPic);
-        
-        
-        const post = new Post();
-        post.user_id = user.id;
-        post.post = postData.post;
-        post.image = resultado.secure_url;
-        post.imagepublicid = resultado.public_id;     
-        await post.save();
-        await post.loadMany(['user', 'favorites', 'replies'])
-        
-        return response.status(201).json(post);
-        
-             
+        try{ 
+            if (postData.image !== null && postData.post !== null ){
+                let postPic = postData['image'];//request.file('avatar', { types: ['image'], size: '2mb' })
+                console.log("Uploading pic");
+                const resultado =  await Cloudinary.v2.uploader.upload(postPic);
+                
+                
+                const post = new Post();
+                post.user_id = user.id;
+                post.post = postData.post;
+                post.image = resultado.secure_url;
+                post.imagepublicid = resultado.public_id;     
+                await post.save();
+                await post.loadMany(['user', 'favorites', 'replies'])
+                
+                return response.status(201).json(post);
 
-        } else {
-        const post = new Post();
-        post.user_id = user.id;
-        post.post = postData.post;
-        await post.save();
-        await post.loadMany(['user', 'favorites', 'replies']) 
-        return response.status(201).json(post);
+            } else {
+                const post = new Post();
+                post.user_id = user.id;
+                post.post = postData.post;
+                await post.save();
+                await post.loadMany(['user', 'favorites', 'replies']) 
+                return response.status(201).json(post);
+            }
+        }catch(error) {
+            return response.status(400).json({
+                data:'wrong',
+                message: 'Error del servidor'
+            })
         }
-        
-        
-        //await request.user.save()
-       // fetch tweet's relations
-       
-    
         
 }
     async show ({ params, response }) {
