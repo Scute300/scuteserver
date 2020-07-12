@@ -28,6 +28,7 @@ const Route = use('Route')
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
   Route.post('/postgoal', 'GoalController.newgoal')
+  Route.get('/timeline/:page', 'UserController.timeline')
 
 
   Route.group(() =>{
@@ -76,7 +77,6 @@ const Route = use('Route')
       Route.get('/users_to_follow', 'UserController.usersToFollow');
       Route.post ( '/follow' , 'UserController.follow' );
       Route.delete('/unfollow/:id', 'UserController.unFollow');
-      Route.get('/timeline/:page', 'UserController.timeline')
       Route.get('/postusers/:id', 'PostController.showprofileposts')
   })
       .prefix('users')
