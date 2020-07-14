@@ -216,12 +216,19 @@ class UserController {
     }
     async timeline ({params, response }) {
     
-        const posts = await Post.query()
+        let posts = await Post.query()
           .with('user')
           .with('favorites')
           .with('replies')
           .orderBy('created_at', 'DESC')
           .paginate(params.page, 3)
+          let result = []
+  
+          for (let post of posts){
+              post.replies = post.replies.length
+          }
+  
+          console.log(posts)
     
         return response.json({
           status: 'success',
