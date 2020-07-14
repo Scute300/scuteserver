@@ -216,7 +216,7 @@ class UserController {
     }
     async timeline ({params, response }) {
         try{
-            let posts = await Post.query()
+            const posts = await Post.query()
             .with('user')
             .with('favorites')
             .with('replies')
