@@ -231,7 +231,7 @@ class UserController {
             let reponsetoserver = []
 
             for(let allpost in allposts ) {
-                console.log(allpost)
+                console.log(allpost.post)
             }
 
 
