@@ -225,13 +225,10 @@ class UserController {
             .paginate(params.page, 3)
             
 
-            let aposts = posts.rows
-            const allposts = await JSON.parse(aposts) 
+            let aposts = await posts.toJSON()
+            console.log(aposts)
             let reponsetoserver = []
 
-            for(let allpost in allposts){
-                console.log(allpost)
-            }
 
 
         
