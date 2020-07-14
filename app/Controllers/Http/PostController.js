@@ -160,14 +160,22 @@ class PostController {
         // add the user's ID also to the array
         followersIds.push(user.id)
     
-        const tweets = await Post.query()
+        let tweets = await Post.query()
             .whereIn('user_id', followersIds)
             .with('user')
             .with('favorites')
             .with('replies')
             .orderBy('created_at', 'DESC')
             .paginate(params.page, 3)
-    
+
+        let result = []
+
+        for (let tweet of tweets){
+            tweet.replies = tweet.replies.length
+        }
+
+        console.log(tweets)
+
         return response.json({
             status: 'success',
             data: tweets
