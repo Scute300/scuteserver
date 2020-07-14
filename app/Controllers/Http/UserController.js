@@ -4,6 +4,7 @@ const Hash = use('Hash')
 const Post = use('App/Models/Post')
 const Cloudinary = use('Cloudinary')
 const { validate } = use('Validator')
+const Reply = use('App/Models/Reply')
 
 class UserController {
 
@@ -223,12 +224,11 @@ class UserController {
             .orderBy('created_at', 'DESC')
             .paginate(params.page, 3)
             
-            console.log(posts.rows)
 
             let allposts = posts.rows
 
             for(let post in allposts){
-                console.log(post.replies.length)
+                console.log(post.replies)
             }
 
         
