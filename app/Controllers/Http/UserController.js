@@ -215,26 +215,32 @@ class UserController {
         })
     }
     async timeline ({params, response }) {
+        try{
+            let posts = await Post.query()
+            .with('user')
+            .with('favorites')
+            .with('replies')
+            .orderBy('created_at', 'DESC')
+            .paginate(params.page, 3)
     
-        let posts = await Post.query()
-          .with('user')
-          .with('favorites')
-          .with('replies')
-          .orderBy('created_at', 'DESC')
-          .paginate(params.page, 3)
-          let result = []
-  
-          for (let post of posts){
-              post.replies = post.replies.length
-          }
-  
-          console.log(posts)
+            for (let post of posts){
+                console.log(post)
+            }
     
-        return response.json({
-          status: 'success',
-          data: posts
+            console.log(posts)
         
-        })
+            return response.json({
+            status: 'success',
+            data: posts
+            
+            })
+        } catch(error){
+            console.log(error)
+            return response.status(400).json({
+                status: 'wrong',
+                message : 'error'
+            })
+        }
       }
 
     //foto de perfil
