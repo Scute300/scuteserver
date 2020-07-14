@@ -229,7 +229,7 @@ class UserController {
             let reponsetoserver = []
 
             for(let post in allposts){
-                console.log(post.relations)
+                console.log(post)
             }
 
 
