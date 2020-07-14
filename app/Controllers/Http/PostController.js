@@ -168,13 +168,6 @@ class PostController {
             .orderBy('created_at', 'DESC')
             .paginate(params.page, 3)
 
-        let result = []
-
-        for (let tweet of tweets){
-            tweet.replies = tweet.replies.length
-        }
-
-        console.log(tweets)
 
         return response.json({
             status: 'success',
