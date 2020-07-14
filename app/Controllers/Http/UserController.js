@@ -230,11 +230,6 @@ class UserController {
 
             for(let post in allposts){
                 console.log(post)
-                const replies = await Reply.query()
-                .where('post_id', post.id)
-                .count('* as total')
-                const repliescount = replies[0].total
-                console.log(repliescount)
             }
 
         
