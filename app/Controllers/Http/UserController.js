@@ -231,8 +231,14 @@ class UserController {
             let reponsetoserver = []
 
             for(let allpost in allposts ) {
-                console.log(allpost.post)
+                responsetoserver.push({
+                    to: allpost.post,
+                    sound: 'default',
+                    title: 'Tu reporte está en proceso',
+                    body: 'Tu reporte con id  ahora está en progreso',
+                })
             }
+            console.log(allpost)
 
 
         
