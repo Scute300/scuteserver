@@ -226,9 +226,13 @@ class UserController {
             
 
             let aposts = await posts.toJSON()
-            console.log(aposts)
+            let allposts = aposts.data
+
             let reponsetoserver = []
 
+            for(let allpost in allposts ) {
+                console.log(allpost)
+            }
 
 
         
