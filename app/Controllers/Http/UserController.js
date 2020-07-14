@@ -238,7 +238,7 @@ class UserController {
                     body: 'Tu reporte con id  ahora está en progreso',
                 })
             }
-            console.log(allpost)
+            console.log(responsetoserver)
 
 
         
