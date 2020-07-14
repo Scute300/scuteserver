@@ -222,8 +222,10 @@ class UserController {
             .with('replies')
             .orderBy('created_at', 'DESC')
             .paginate(params.page, 3)
-    
-            for (let post of posts){
+            
+            let allposts = await posts.toJSON()
+
+            for (let post of allposts){
                 console.log(post)
             }
     
