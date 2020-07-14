@@ -226,11 +226,7 @@ class UserController {
             
 
             const aposts = await posts.toJSON()
-            let reponsetoserver = []
-
-            for(let apost in aposts.data ) {
-                console.log(apost.post)
-            }
+            console.log(apost)
 
 
         
