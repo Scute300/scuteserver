@@ -241,7 +241,7 @@ class UserController {
         
             return response.json({
             status: 'success',
-            data: data
+            data: {data : data}
             })
         } catch(error){
             console.log(error)
