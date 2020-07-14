@@ -233,7 +233,7 @@ class UserController {
                 .where('post_id', post.id)
                 .count('* as total')
 
-                const repliescount = replies[0].repliescount
+                const repliescount = replies[0].total
                 post.replies = repliescount
                 console.log(post.replies) 
             }
