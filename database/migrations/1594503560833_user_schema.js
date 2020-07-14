@@ -6,7 +6,6 @@ const Schema = use('Schema')
 class UserSchema extends Schema {
   up () {
     this.table('users', (table) => {
-      table.date('cumpleaños',8).nullable()
       // alter table
     })
   }
