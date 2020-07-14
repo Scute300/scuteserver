@@ -234,7 +234,7 @@ class UserController {
                     let countfavorites = post.favorites.length
                     post.replies = countreplies
                     post.favorites = countfavorites
-                    arraypost.push(post)
+                    data.push(post)
                 }
 
                 console.log(data)
