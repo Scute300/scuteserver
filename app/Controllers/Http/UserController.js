@@ -226,11 +226,9 @@ class UserController {
             
 
             let allposts = posts.rows
+            console.log(allposts)
             let reponsetoserver = []
 
-            for(let post in allposts){
-                console.log(post)
-            }
 
         
             return response.json({
