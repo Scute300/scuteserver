@@ -224,12 +224,12 @@ class UserController {
             .orderBy('created_at', 'DESC')
             .paginate(params.page, 3)
             
-            let arrayposts = []
             const aposts = await posts.toJSON()
-            console.log(aposts)
-            arrayposts.push(aposts.data)
-            console.log(arrayposts)
+            let allposts = aposts.data 
 
+            for (let post of allposts) {
+                console.log(post);
+              }
 
         
             return response.json({
