@@ -227,16 +227,17 @@ class UserController {
             const aposts = await posts.toJSON()
             let allposts = aposts.data 
 
-            let arraypost = []
+            let data = []
 
             for (let post of allposts) {
-                    console.log(post.replies.length)
                     let countreplies = post.replies.length
+                    let countfavorites = post.favorites.length
                     post.replies = countreplies
+                    post.favorites = countfavorites
                     arraypost.push(post)
                 }
 
-                console.log(arraypost)
+                console.log(data)
 
         
             return response.json({
