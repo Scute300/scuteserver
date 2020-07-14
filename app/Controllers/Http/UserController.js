@@ -228,7 +228,7 @@ class UserController {
             let allposts = posts.rows
 
             for(let post in allposts){
-                console.log(post)
+                console.log(post.replies.length)
             }
 
         
