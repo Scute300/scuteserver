@@ -225,10 +225,12 @@ class UserController {
             
             console.log(posts.rows)
 
-            let allposts = await posts.toJSON()
+            let allposts = posts.rows
 
+            for(let post in allposts){
+                console.log(post)
+            }
 
-    
         
             return response.json({
             status: 'success',
