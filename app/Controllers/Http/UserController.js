@@ -227,18 +227,17 @@ class UserController {
 
             let aposts = await posts.toJSON()
             let allposts = aposts.data
-            console.log(allposts)
             let reponsetoserver = []
 
             for(let allpost in allposts ) {
-                responsetoserver.push({
+                reponsetoserver.push({
                     to: allpost.post,
                     sound: 'default',
                     title: 'Tu reporte está en proceso',
                     body: 'Tu reporte con id  ahora está en progreso',
                 })
             }
-            console.log(responsetoserver)
+            console.log(reponsetoserver)
 
 
         
