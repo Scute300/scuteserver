@@ -201,7 +201,22 @@ class PostController {
 
     }
 
+    async getreplies({params, response}){
+        const replies = await Reply.query()
+        .where('post_id', params.id)
+        .with('user')
+        .orderBy('created_at', 'DESC')
+        .paginate(page , 3)
+
+        return response.json({
+            status: 'success',
+            data: replies
+        })
+    }
+
 }
+
+
 
 
 

@@ -30,6 +30,7 @@ const Route = use('Route')
   Route.post('/login', 'UserController.login');
   Route.get('/timeline/:page', 'UserController.timeline')
   Route.get('/posts/:id', 'PostController.show');
+  Route.get('/postreplies/:id', 'PostController.getreplies')
 
 
   Route.group(() =>{
