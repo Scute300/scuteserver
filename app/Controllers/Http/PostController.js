@@ -53,10 +53,16 @@ class PostController {
                 .with('replies.user')
                 .with('favorites')
                 .firstOrFail()
+
+            const onepost = await post.toJSON()
+            let postresponse = onepost
+                postresponse.replies = onepost.replies.length
+                postresponse.favorites = onepost.favorites.length
+            
     
             return response.json({
                 status: 'success',
-                data: post
+                data: postresponse
             })
         } catch (error) {
             return response.status(404).json({
