@@ -23,12 +23,13 @@ const Route = use('Route')
 	  return x;
   })
   
+  //public function
   Route.put('/nerfeo', 'UserController.nerfeos')
   Route.get('/royal', 'UserController.royale')
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
-  Route.post('/postgoal', 'GoalController.newgoal')
   Route.get('/timeline/:page', 'UserController.timeline')
+  Route.get('/posts/:id', 'PostController.show');
 
 
   Route.group(() =>{
@@ -84,7 +85,6 @@ const Route = use('Route')
 
       //posts
       Route.post('/post', 'PostController.post').middleware(['auth']);
-      Route.get('/posts/:id', 'PostController.show').middleware(['auth']);
       Route.post('/posts/reply/:id', 'PostController.reply').middleware(['auth']);
       Route.get('/destacado', 'PostController.favorites').middleware(['auth']);
       Route.get('/usertimeline/:page', 'PostController.usertimeline').middleware(['auth'] )
