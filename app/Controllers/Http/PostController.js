@@ -201,7 +201,7 @@ class PostController {
 
     }
 
-    async getreplies({params, response}){
+    async getreplies({params, response, request}){
 
         const page = request.only(['page'])
 
