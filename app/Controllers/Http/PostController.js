@@ -202,6 +202,9 @@ class PostController {
     }
 
     async getreplies({params, response}){
+
+        const page = request.only(['page'])
+
         const replies = await Reply.query()
         .where('post_id', params.id)
         .with('user')
