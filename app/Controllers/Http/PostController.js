@@ -201,10 +201,9 @@ class PostController {
 
     }
 
-    async getreplies({params, response, request}){
+    async getPostReplies({params, response, request}){
         try{
             const data = request.only(['foo']);
-            console.log(data)
             const page = parseInt(data.foo , 10);
 
             const replies = await Reply.query()
@@ -218,7 +217,6 @@ class PostController {
                 data: replies
             })
         }catch(error){
-            console.log(error)
             return response.status(400).json({
                 data: 'wrong',
                 message: 'error'
