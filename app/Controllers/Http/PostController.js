@@ -202,21 +202,28 @@ class PostController {
     }
 
     async getreplies({params, response, request}){
+        try{
+            const data = request.only(['foo']);
+            console.log(data)
+            const page = parseInt(data.foo , 10);
 
-        const data = request.only(['foo']);
-        console.log(data)
-        const page = parseInt(data.foo , 10);
+            const replies = await Reply.query()
+            .where('post_id', params.id)
+            .with('user')
+            .orderBy('created_at', 'DESC')
+            .paginate(page , 3)
 
-        const replies = await Reply.query()
-        .where('post_id', params.id)
-        .with('user')
-        .orderBy('created_at', 'DESC')
-        .paginate(page , 3)
-
-        return response.json({
-            status: 'success',
-            data: replies
-        })
+            return response.json({
+                status: 'success',
+                data: replies
+            })
+        }catch(error){
+            console.log(error)
+            return response.status(400).json({
+                data: 'wrong',
+                message: 'error'
+            })
+        }
     }
 
 }
