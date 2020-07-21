@@ -4,6 +4,7 @@ const Reply = use('App/Models/Reply')
 const Cloudinary = use('Cloudinary')
 const User = use('App/Models/User')
 const Event = use('Event')
+const { validate } = use('Validator')
 
 class PostController {
     async post ({ request, auth, response }) {
@@ -75,39 +76,52 @@ class PostController {
     //reply
     async reply ({ request, auth, params, response }) {
         // get currently authenticated user
-        const user = auth.current.user
-    
+        const data = request.only(['reply'])
         // get tweet with the specified ID
-        const post = await Post.find(params.id)
         
-        
-        
-        // persist to database
-        const reply = await Reply.create({
-            user_id: user.id,
-            post_id: post.id,
-            reply: request.input('reply')
-        })
+        try{        
+            const rules = {
+                reply: 'required|string|max:200',
+            }  
+            const messages = {
+                required: 'La respuesta no puede estar vacia',
+                string: 'Porfavor introduce un caracter valido',
+                max: 'El mensaje no puede exceder 200 caracteres'
+            }
 
-    
-        // fetch user that made the reply
-        await reply.load('user')
+            const validation = await validate(data, rules, messages)
+            if(validation.fails()){
+                const message = validation.messages()
+                let error = message[0]
+                return response.status(400).json({
+                    status: 'wrong',
+                    message: error.message
+                })
+            } else {
+                const user = auth.current.user
+                const post = await Post.find(params.id)
+                
+                const reply = await Reply.create({
+                    user_id: user.id,
+                    post_id: post.id,
+                    reply: request.input('reply')
+                })
+                await reply.load('user')
         
-       
+                return response.json({
+                    status: 'success',
+                    message: 'Respuesta publicada',
+                    data: reply
+                })
         
-    
-        return response.json({
-            status: 'success',
-            message: 'Respuesta publicada',
-            data: reply
-        })
 
-        
-        
-        
-
-
-        
+            }
+        }catch(error){
+            return response.status(400).json({
+                status: 'wrong',
+                message : error
+            })
+        }
     }
     async destroy ({ request, auth, params, response }) {
         // get currently authenticated user
