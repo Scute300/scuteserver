@@ -66,6 +66,9 @@ class User extends Model {
     currentheme () {
       return this.hasOne('App/Models/Currentheme')
     }
+    monedero(){
+      return this.hasOne('App/Models/Monedero')
+    }
 
 }
 
