@@ -100,6 +100,7 @@ class UserController {
     async me ({ auth, response }) {
         const user = await User.query()
             .where('id', auth.current.user.id)
+            .with('monedero')
             .firstOrFail()
 
             
