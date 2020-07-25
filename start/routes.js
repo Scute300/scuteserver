@@ -31,7 +31,7 @@ const Route = use('Route')
   Route.get('/timeline/:page', 'UserController.timeline')
   Route.get('/posts/:id', 'PostController.show');
   Route.get('/postreplies/:id', 'PostController.getPostReplies')
-
+  Route.get('/monedero', 'MonederoController.obtenermonedero')
 
   Route.group(() =>{
     Route.post('/new', 'ThemeController.newtheme' )
