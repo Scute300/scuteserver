@@ -57,7 +57,6 @@ const Route = use('Route')
     Route.get(':username', 'UserController.showProfile');
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
-    Route.put('/especial', 'UserController.especial');
     Route.get('/monedero', 'MonederoController.obtain')
 })
     .prefix('account')
