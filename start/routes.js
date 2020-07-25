@@ -57,7 +57,6 @@ const Route = use('Route')
     Route.get(':username', 'UserController.showProfile');
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
-    Route.get('/monedero', 'MonederoController.obtain')
 })
     .prefix('account')
     .middleware(['auth'])
@@ -119,6 +118,7 @@ const Route = use('Route')
       Route.get('/temasusuario/', 'ThemeController.temasusuario')
       Route.post('/comprartemapuntos', 'ThemeController.comprarpuntos')
       Route.get('/singletheme/:nombre','ThemeController.show')
+      Route.get('/monedero', 'MonederoController.obtain')
 
       })
         .prefix('tienda')
