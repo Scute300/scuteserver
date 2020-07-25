@@ -31,7 +31,6 @@ const Route = use('Route')
   Route.get('/timeline/:page', 'UserController.timeline')
   Route.get('/posts/:id', 'PostController.show');
   Route.get('/postreplies/:id', 'PostController.getPostReplies')
-  Route.get('/monedero', 'MonederoController.obtenermonedero')
 
   Route.group(() =>{
     Route.post('/new', 'ThemeController.newtheme' )
@@ -59,6 +58,7 @@ const Route = use('Route')
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
     Route.put('/especial', 'UserController.especial');
+    Route.get('/monedero', 'MonederoController.obtenermonedero')
     
 })
     .prefix('account')
