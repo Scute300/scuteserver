@@ -58,8 +58,7 @@ const Route = use('Route')
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
     Route.put('/especial', 'UserController.especial');
-    Route.get('/monedero', 'MonederoController.obtenermonedero')
-    
+    Route.get('/monedero', 'MonederoController.obtain')
 })
     .prefix('account')
     .middleware(['auth'])
