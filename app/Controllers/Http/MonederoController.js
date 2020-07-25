@@ -7,6 +7,7 @@ class MonederoController {
             const user = auth.current.user
             const monedero = await Monedero.query()
             .where('user_id', user.id)
+            .fetch()
             console.log(monedero)
 
             return response.json('Hola mundo')
