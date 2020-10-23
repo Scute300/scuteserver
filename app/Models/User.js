@@ -69,6 +69,10 @@ class User extends Model {
     monedero(){
       return this.hasOne('App/Models/Monedero')
     }
+     
+    buques(){
+      return this.hasMany('App/Models/Buque')
+    }
 
 }
 

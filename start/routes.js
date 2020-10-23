@@ -123,3 +123,10 @@ const Route = use('Route')
       })
         .prefix('tienda')
         .middleware(['auth']);
+
+    Route.group(() =>{
+      Route.post('/newbuque', 'BuqueController.añadirbuque' )
+  
+    })
+      .prefix('naviera')
+      .middleware(['auth'])
