@@ -127,7 +127,7 @@ const Route = use('Route')
     Route.group(() =>{
       Route.post('/newbuque', 'BuqueController.añadirbuque' )
       Route.get('/obtenerbuques', 'BuqueController.obtenerbuques' )
-      Route.delete('/eliminarbuque', 'BuqueController.eliminarbuque' )
+      Route.delete('/eliminarbuque/:id', 'BuqueController.eliminarbuque' )
   
     })
       .prefix('naviera')

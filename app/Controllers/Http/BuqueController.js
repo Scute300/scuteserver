@@ -35,9 +35,8 @@ class BuqueController {
         })
     }
 
-    async eliminarbuque({auth, request, response}){
-        const data=request.only(['id'])
-        const buque = Buque.findBy('id',data.id)
+    async eliminarbuque({auth, params, response}){
+        const buque = Buque.findBy('id',params.id)
         await buque.delete()
     
         return response.json({
