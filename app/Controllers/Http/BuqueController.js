@@ -11,7 +11,7 @@ class BuqueController {
             buque.eslora = data.eslora
             buque.potencia = data.potencia
             buque.manga= data.manga
-            buque.DWT = data.dwt
+            buque.dwt = data.dwt
             buque.puntal = data.puntal
             await buque.save()
     
