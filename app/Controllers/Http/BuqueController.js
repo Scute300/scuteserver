@@ -3,12 +3,13 @@ const Buque = use('App/Models/Buque')
 class BuqueController {
     async añadirbuque({auth, request, response}){
         try{
-            const data = request.only(['nombrebuque', 'eslora', 'potencia', 'manga', 'dwt', 'puntal', 'year', 'IMO', 'banderas', 'clases'])
+            const data = request.only(['tipo','nombrebuque', 'eslora', 'calado', 'manga', 'dwt', 'puntal', 'year', 'IMO', 'banderas', 'clases'])
             const buque = new Buque()
+            buque.tipo = data.tipo
             buque.user_id = auth.current.user.id
             buque.nombrebuque = data.nombrebuque
             buque.eslora = data.eslora
-            buque.potencia = data.potencia
+            buque.calado = data.calado
             buque.manga= data.manga
             buque.dwt = data.dwt
             buque.puntal = data.puntal
@@ -59,13 +60,14 @@ class BuqueController {
     }
 
     async editarbuque({auth, params, response, request}){
-        const data= request.only(['nombrebuque', 'empresa', 'eslora', 'potencia', 'manga', 'dwt', 'puntal'])
+        const data= request.only(['tipo','nombrebuque', 'empresa', 'eslora', 'calado', 'manga', 'dwt', 'puntal'])
         const buque = await Buque.findBy('id',params.id)
         buque.user_id = auth.current.user.id
+        buque.tipo = data.tipo
         buque.nombrebuque = data.nombrebuque
         buque.empresa = data.empresa
         buque.eslora = data.eslora
-        buque.potencia = data.potencia
+        buque.calado = data.potencia
         buque.manga= data.manga
         buque.dwt = data.dwt
         buque.puntal = data.puntal
