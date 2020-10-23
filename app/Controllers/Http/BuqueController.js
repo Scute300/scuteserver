@@ -6,6 +6,7 @@ class BuqueController {
             const data = request.only(['nombrebuque', 'empresa', 'eslora', 'potencia', 'manga', 'dwt', 'puntal'])
             const buque = new Buque()
             buque.user_id = auth.current.user.id
+            buque.nombrebuque = data.nombrebuque
             buque.empresa = data.empresa
             buque.eslora = data.eslora
             buque.potencia = data.potencia
