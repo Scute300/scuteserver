@@ -3,16 +3,19 @@ const Buque = use('App/Models/Buque')
 class BuqueController {
     async añadirbuque({auth, request, response}){
         try{
-            const data = request.only(['nombrebuque', 'empresa', 'eslora', 'potencia', 'manga', 'dwt', 'puntal'])
+            const data = request.only(['nombrebuque', 'eslora', 'potencia', 'manga', 'dwt', 'puntal', 'year', 'IMO', 'banderas', 'clases'])
             const buque = new Buque()
             buque.user_id = auth.current.user.id
             buque.nombrebuque = data.nombrebuque
-            buque.empresa = data.empresa
             buque.eslora = data.eslora
             buque.potencia = data.potencia
             buque.manga= data.manga
             buque.dwt = data.dwt
             buque.puntal = data.puntal
+            buque.year = data.year
+            buque.IMO= data.IMO
+            buque.banderas = data.banderas
+            buque.clases = data.clases
             await buque.save()
     
             return response.json({
