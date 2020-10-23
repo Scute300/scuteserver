@@ -2,7 +2,6 @@
 const Buque = use('App/Models/Buque')
 class BuqueController {
     async añadirbuque({auth, request, response}){
-
         try{
             const data = request.only(['nombrebuque', 'empresa', 'eslora', 'potencia', 'manga', 'dwt', 'puntal'])
             const buque = new Buque()
@@ -19,8 +18,9 @@ class BuqueController {
                 status: 'sure'
             })
         } catch(error){
-            return response.json({})
-            console.log(error)
+            return response.status(400).json({
+                message:error
+            })
         }
 
     }
