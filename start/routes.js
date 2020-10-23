@@ -128,6 +128,8 @@ const Route = use('Route')
       Route.post('/newbuque', 'BuqueController.añadirbuque' )
       Route.get('/obtenerbuques', 'BuqueController.obtenerbuques' )
       Route.delete('/eliminarbuque/:id', 'BuqueController.eliminarbuque' )
+      Route.get('/verbuque/:id', 'BuqueController.verunbuque' )
+      Route.put('/editarbuque/:id', 'BuqueController.editarbuque' )
   
     })
       .prefix('naviera')
