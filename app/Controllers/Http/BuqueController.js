@@ -1,5 +1,5 @@
 'use strict'
-import Buque from 'App/Models/Buque'
+const Buque = use('App/Models/Buque')
 class BuqueController {
     async añadirbuque({auth, request, response}){
 
@@ -19,6 +19,7 @@ class BuqueController {
                 status: 'sure'
             })
         } catch(error){
+            return response.json({})
             console.log(error)
         }
 
