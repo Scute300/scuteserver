@@ -24,6 +24,15 @@ class BuqueController {
         }
 
     }
+
+    async obtenerbuques({auth,request,response}){
+        const buques = await Buque.all() 
+    
+        return response.json({
+            status: 'sure',
+            data: buques
+        })
+    }
 }
 
 module.exports = BuqueController

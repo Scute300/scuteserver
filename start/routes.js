@@ -126,6 +126,7 @@ const Route = use('Route')
 
     Route.group(() =>{
       Route.post('/newbuque', 'BuqueController.añadirbuque' )
+      Route.post('/obtenerbuques', 'BuqueController.obtenerbuques' )
   
     })
       .prefix('naviera')
