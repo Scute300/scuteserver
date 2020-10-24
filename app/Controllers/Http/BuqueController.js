@@ -62,7 +62,6 @@ class BuqueController {
     async editarbuque({auth, params, response, request}){
         const data= request.only(['tipo','nombrebuque', 'empresa', 'eslora', 'calado', 'manga', 'dwt', 'puntal'])
         const buque = await Buque.findBy('id',params.id)
-        buque.user_id = auth.current.user.id
         buque.tipo = data.tipo
         buque.nombrebuque = data.nombrebuque
         buque.empresa = data.empresa
