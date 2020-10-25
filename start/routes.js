@@ -131,7 +131,7 @@ const Route = use('Route')
       Route.get('/verbuque/:id', 'BuqueController.verunbuque' )
       Route.put('/editarbuque/:id', 'BuqueController.editarbuque' )
       Route.post('/anadirunbuqueusuario/', 'BuqueuserController.añadirusuario' )
-  
+      Route.get('/usuariosbuques', 'BuqueuserController.obteneruserbuques')
     })
       .prefix('naviera')
       .middleware(['auth'])

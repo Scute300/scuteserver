@@ -27,6 +27,14 @@ class BuqueuserController {
             data: 'sure'
         })
     }
+
+    async obteneruserbuques ({auth, request, response }){
+        const userbuques = await Buqueuser.all()
+
+        return response.json({
+            data: userbuques
+        })
+    }
 }
 
 module.exports = BuqueuserController
