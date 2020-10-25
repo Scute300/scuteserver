@@ -11,7 +11,7 @@ class BuqueuserController {
         user.email = data.email
         user.cargo = data.cargo
         user.rol = data.rol
-        user.doublecheck = data.check
+        user.doublecheck = data.doublecheck
         await user.save()
 
         if(data.buques.length !== 0){
