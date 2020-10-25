@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Buqueuser extends Model {
-    cargobuque(){
+    cargobuques(){
         return this.hasMany('App/Models/Cargobuque')
     }
 }

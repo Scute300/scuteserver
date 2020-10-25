@@ -37,7 +37,10 @@ class BuqueuserController {
     }
 
     async obtenerunusuario ({params, response}){
-        const usuario = await Buqueuser.findBy('id',params.id)
+        const usuario = await Buqueuser.query()
+        .where('id', params.id )
+        .with('cargobuques')
+        .fetch()
 
         return response.json({
             data: usuario
