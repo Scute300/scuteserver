@@ -68,11 +68,11 @@ class BuqueuserController {
         await user.save()
 
         if(data.buques.length !== 0){
+            const buscarbuque = await CargoBuque.query()
+            .where('buqueuser_id', user.id)
+            .delete()
             for(let i = 0; i < data.buques.length; i++){
-                const buscarbuque = await CargoBuque.query()
-                .where('buqueuser_id', user.id)
-                .delete()
-                
+
                 const cargo = await new CargoBuque()
                 cargo.buqueuser_id = user.id
                 cargo.buque = data.buques[i]
