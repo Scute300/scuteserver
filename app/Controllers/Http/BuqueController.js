@@ -1,5 +1,6 @@
 'use strict'
 const Buque = use('App/Models/Buque')
+const Cargo = use('App/Models/Cargo')
 class BuqueController {
     async añadirbuque({auth, request, response}){
         try{
