@@ -1,6 +1,7 @@
 'use strict'
 const Buqueuser = use('App/Models/Buqueuser')
 const CargoBuque = use('App/Models/Cargobuque')
+const Cargo = use('App/Models/Cargo')
 class BuqueuserController {
     async añadirusuario({auth, request, response}){
         const data = request.only(['username', 'name', 'apellido', 'email', 'cargo', 'rol', 'doublecheck', 'buques'])
@@ -30,9 +31,10 @@ class BuqueuserController {
 
     async obteneruserbuques ({auth, request, response }){
         const userbuques = await Buqueuser.all()
-
+        const cargos= await Cargo.all()
         return response.json({
-            data: userbuques
+            data: userbuques,
+            cargos: cargos
         })
     }
 
