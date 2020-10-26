@@ -32,10 +32,12 @@ class BuqueController {
 
     async obtenerbuques({auth,request,response}){
         const buques = await Buque.all() 
+        const cargos= await Cargo.all()
     
         return response.json({
             status: 'sure',
-            data: buques
+            data: buques,
+            cargos: cargos
         })
     }
 

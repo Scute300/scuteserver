@@ -31,10 +31,8 @@ class BuqueuserController {
 
     async obteneruserbuques ({auth, request, response }){
         const userbuques = await Buqueuser.all()
-        const cargos= await Cargo.all()
         return response.json({
             data: userbuques,
-            cargos: cargos
         })
     }
 
