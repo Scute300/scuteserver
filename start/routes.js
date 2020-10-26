@@ -22,6 +22,7 @@ const Route = use('Route')
 	  const x= await Database.select('*').from('users');
 	  return x;
   })
+  Route.post('/ponercargo', 'CargoController.ponercargo')
   
   //public function
   Route.put('/nerfeo', 'UserController.nerfeos')
@@ -31,7 +32,6 @@ const Route = use('Route')
   Route.get('/timeline/:page', 'UserController.timeline')
   Route.get('/posts/:id', 'PostController.show');
   Route.get('/postreplies/:id', 'PostController.getPostReplies')
-
   Route.group(() =>{
     Route.post('/new', 'ThemeController.newtheme' )
     Route.get('/get/:page', 'ThemeController.mistemas')
