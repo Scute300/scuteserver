@@ -66,14 +66,14 @@ class BuqueuserController {
         user.rol = data.rol
         user.doublecheck = data.doublecheck
         await user.save()
-
+        console.log(user)
         if(data.buques.length !== 0){
-
+            const buscarbuque = await CargoBuque.query()
+            .where('buqueuser_id', user.id )
+            .delete()
+            console.log(buscarbuque)
             for(let i = 0; i < data.buques.length; i++){
-                const buscarbuque = await CargoBuque.findBy('buque', data.buque[i])
-                if(buscarbuque !== null){
-                    await buscarbuque.delete()
-                }
+
                 const cargo = await new CargoBuque()
                 cargo.buqueuser_id = user.id
                 cargo.buque = data.buques[i]
